@@ -2,20 +2,27 @@
 
 You are producing a personal daily sports newsletter for one reader and emailing it to them.
 Follow this document exactly. Topic scope and priorities live in `topics.md`; the visual
-layout lives in `template.html`. Past issues live in `archive/`.
+layout lives in `template.html`. Past issues are the emails already sent (see step 2).
 
 ## Delivery
 
 - **To:** vishwanathovi@gmail.com
 - **Subject:** `Daily Sports Brief — <Day, DD Mon YYYY>` (e.g. `Daily Sports Brief — Sun, 27 Sep 2026`)
 - **Send with:** the Gmail connector (`send_message`, `htmlBody` = the rendered HTML, `body` = a short plain-text fallback).
+  `htmlBody` must start directly with the outer `<table ...>`. Do **not** include `<!doctype>`,
+  `<html>`, `<head>`, `<body>` tags or HTML comments: Gmail shows them as literal text at the
+  top of the email.
 - **Schedule:** every day at 9:00 AM IST (the Routine fires a few minutes early).
 
 ## Run steps
 
 1. **Get the date.** Run `TZ=Asia/Kolkata date`. "Today" and every time in the email are IST.
    The coverage window is the **last 7 days** up to now.
-2. **Read context.** Read `topics.md`, `template.html`, and the 3 most recent files in `archive/`.
+2. **Read context.** Read `topics.md` and `template.html`. Then find the recent issues in Gmail:
+   `search_threads` with `subject:"Daily Sports Brief" in:sent newer_than:4d`, and read the
+   latest 2–3 with `get_message` (`messageFormat: PLAIN_TEXT`). Ignore subjects starting with
+   `[TEST]`. If a past issue says a result was pending ("in progress", "full result tomorrow"),
+   report the final result today.
    Anything already covered in a recent issue should not be repeated as a full story unless
    there is a genuinely new development (then say what changed).
 3. **Research each sport** (see `topics.md` for scope) with web search. For each sport find:
@@ -54,10 +61,8 @@ layout lives in `template.html`. Past issues live in `archive/`.
    only (email clients strip `<style>`). Never use white or light text: many email clients
    strip or invert background colours, so all text must be readable on plain white.
 7. **Send** the email (see Delivery).
-8. **Archive.** Save a short markdown record to `archive/YYYY-MM-DD.md` (headlines + links,
-   not the full HTML), commit it with message `newsletter: issue YYYY-MM-DD`, and push to the
-   branch this folder lives on. If the push is refused, the email is still the deliverable —
-   do not retry endlessly.
+8. **Done.** The sent email is the record; don't commit or push anything to the repo.
+   Finish by replying with the subject, the Gmail message id and one line per section.
 
 ## Style
 

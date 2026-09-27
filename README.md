@@ -6,4 +6,4 @@ written by Claude and emailed every morning at 9:00 AM IST by a scheduled Claude
 - `newsletter/INSTRUCTIONS.md`: what each daily run does, step by step
 - `newsletter/topics.md`: scope and priorities per sport (edit this to change coverage)
 - `newsletter/template.html`: the email layout
-- `newsletter/archive/`: one short record per issue, used to avoid repeating stories
+- `newsletter/archive/`: record of the first issue (later runs use your sent emails instead)
