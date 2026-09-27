@@ -4,10 +4,9 @@
   black text on white, plain blue underlined links. No emoji, no coloured cards.
   All text must stay readable if a client strips background colours.
   Replace {{PLACEHOLDERS}}; repeat / delete blocks as needed.
+  When sending: htmlBody = everything from the first table tag to the end, with every HTML
+  comment removed. Never add a doctype, html or body wrapper: Gmail shows those as literal text.
 -->
-<!doctype html>
-<html>
-<body style="margin:0;padding:0;background-color:#ffffff;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
 <tr><td align="center" style="padding:24px 16px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45;color:#000000;-webkit-font-smoothing:antialiased;">
@@ -84,5 +83,3 @@
 </table>
 </td></tr>
 </table>
-</body>
-</html>
