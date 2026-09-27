@@ -1,0 +1,88 @@
+<!--
+  Daily Sports Brief — email template.
+  Email-safe: table layout + inline styles only (Gmail strips <style> blocks in many cases).
+  Replace {{PLACEHOLDERS}}. Repeat / delete component blocks as needed.
+  Sport accent colours: F1 #e10600 · UFC #d4a017 · Tennis #2e8b57 · Cricket #1f5fbf
+-->
+<!doctype html>
+<html>
+<body style="margin:0;padding:0;background:#f2f3f5;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f5;">
+<tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:12px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c1e21;">
+
+  <!-- HEADER -->
+  <tr><td style="padding:24px 28px 8px;">
+    <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#6b7280;">Daily Sports Brief</div>
+    <div style="font-size:22px;font-weight:700;margin-top:4px;">{{DATE_LONG}}</div>
+    <div style="font-size:13px;color:#6b7280;margin-top:4px;">F1 · UFC · Tennis · Cricket — last 7 days + what's next. All times IST.</div>
+  </td></tr>
+
+  <!-- HERO (exactly one) -->
+  <tr><td style="padding:16px 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#111827;border-radius:10px;">
+      <tr><td style="padding:22px 24px;color:#ffffff;">
+        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:{{ACCENT}};font-weight:700;">{{SPORT}} · Top story</div>
+        <div style="font-size:21px;font-weight:700;line-height:1.3;margin-top:8px;">{{HERO_HEADLINE}}</div>
+        <div style="font-size:14px;line-height:1.5;color:#d1d5db;margin-top:8px;">{{HERO_SUMMARY}}</div>
+        <ul style="font-size:14px;line-height:1.55;color:#e5e7eb;margin:12px 0 0;padding-left:18px;">
+          <li>{{HIGHLIGHT}}</li>
+        </ul>
+        <a href="{{URL}}" style="display:inline-block;margin-top:14px;font-size:13px;color:#ffffff;text-decoration:underline;">Read the full report →</a>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- SECTION HEADER (one per sport) -->
+  <tr><td style="padding:20px 28px 6px;">
+    <div style="font-size:16px;font-weight:700;border-left:4px solid {{ACCENT}};padding-left:10px;">{{SPORT}}</div>
+  </td></tr>
+
+  <!-- RESULT CARD -->
+  <tr><td style="padding:6px 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:10px;">
+      <tr><td style="padding:14px 16px;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#6b7280;">Result · {{EVENT_DATE}}</div>
+        <div style="font-size:15px;font-weight:700;margin-top:4px;">{{EVENT_NAME}}</div>
+        <div style="font-size:14px;margin-top:6px;">{{RESULT_LINE}}</div>
+        <ul style="font-size:13px;line-height:1.5;color:#374151;margin:8px 0 0;padding-left:18px;">
+          <li>{{DETAIL}}</li>
+        </ul>
+        <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Source →</a>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- NEWS ITEM (max 3 per sport) -->
+  <tr><td style="padding:6px 28px;">
+    <div style="font-size:14px;line-height:1.5;"><b>{{NEWS_TITLE}}</b> — {{NEWS_ONE_LINER}} <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Source</a></div>
+  </td></tr>
+
+  <!-- UPCOMING EVENT CARD -->
+  <tr><td style="padding:6px 28px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1px dashed {{ACCENT}};border-radius:10px;">
+      <tr><td style="padding:14px 16px;">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:{{ACCENT}};font-weight:700;">Up next</div>
+        <div style="font-size:15px;font-weight:700;margin-top:4px;">{{UPCOMING_NAME}}</div>
+        <div style="font-size:13px;color:#374151;margin-top:4px;">🗓 {{DATE_IST}} &nbsp;·&nbsp; ⏰ {{TIME_IST}} IST &nbsp;·&nbsp; 📍 {{VENUE}}</div>
+        <div style="font-size:13px;line-height:1.5;margin-top:8px;">{{KEY_MATCHUPS}}</div>
+        <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Details →</a>
+      </td></tr>
+    </table>
+  </td></tr>
+
+  <!-- QUIET LINE (when a sport has nothing) -->
+  <tr><td style="padding:6px 28px;">
+    <div style="font-size:13px;color:#9ca3af;">Quiet week — nothing major.</div>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td style="padding:24px 28px;font-size:11px;color:#9ca3af;border-top:1px solid #eef0f2;">
+    Compiled automatically from public reports. Times converted to IST; check official sources for late changes.
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>
