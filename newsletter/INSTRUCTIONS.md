@@ -26,24 +26,33 @@ layout lives in `template.html`. Past issues live in `archive/`.
    Cross-check key facts (winner, score, date) against at least two results. If page fetches
    are blocked by the network, rely on search-result snippets from reputable outlets and link those.
    Never invent a result, score, time or quote. If something is unconfirmed, leave it out.
-4. **Pick the hero.** The single biggest story across all four sports in the window becomes the
-   hero (one per issue). Priority tie-breaker: F1 race result > India men's cricket result >
-   Grand Slam final > UFC title fight.
-5. **Write the issue** using `template.html` components:
-   - Hero → 1 headline, 1-sentence summary, 2–3 bullet highlights, source link.
-   - One section per sport, in this order: Formula 1, UFC, Tennis, Cricket.
-     - **Result card**: event name + date, the result (podium / winner + method / scoreline),
-       then 2–3 bullets of key details. Link to the original report.
-     - **News items**: 1–2 lines each, max 3 per sport, each with a source link.
-     - **Upcoming event card**: event name, date, start time **IST** (convert from local/ET/UTC
-       and double-check the day rolls over correctly), venue, and the main fights / key matchup.
-   - If a sport has nothing in the window and nothing upcoming soon, show a single muted line:
-     "Quiet week — nothing major." Do not pad.
+4. **Pick the top story.** The single biggest story across all four sports in the window
+   opens the issue (one per issue). Priority tie-breaker: F1 race result > India men's cricket
+   result > Grand Slam final > UFC title fight.
+5. **Write the issue** with the blocks in `template.html` (Bloomberg India Edition style:
+   one plain column, black rules between sections, links inside sentences, no cards or emoji):
+   - **Masthead + intro**: keep the fixed italic welcome line; write a one-sentence
+     "Today: …" teaser naming the 2–3 biggest items.
+   - **Top story section**: a short headline-style title (e.g. "Russell Holds On in Baku"),
+     one paragraph (2–3 sentences), then "Key moments" with 2–3 bullets.
+   - **One section per sport**, in this order: Formula 1, UFC, Tennis, Cricket. Don't repeat
+     the top story in its sport's section.
+     - **Results**: a bold subhead ("Rosas Jr. stops Barcelos in Vegas"), then 1–2 short
+       paragraphs: result (podium / winner + method + round / scoreline) and key details.
+     - **News**: 1–2 sentences each, max 3 per sport, with the source link inside the sentence.
+     - If a sport has nothing in the window, use the grey quiet-week line. Do not pad.
+   - **Coming Up**: every upcoming event from all sports in one list, sorted by date (next
+     ~14 days, plus the next Grand Slam if it's within 30 days). Each row has the event name
+     (linked), day, date, start time **in IST** (convert from local/ET/UTC and check the day
+     rolls over correctly) and venue. UFC rows list the main card. The right-hand
+     **days-left** cell is calendar days from the issue date to the event date, both in IST:
+     0 → "Today" / "live", 1 → "1" / "day left", n → "n" / "days left". Compute it with
+     `date`, don't estimate it.
    - Keep it tight: the whole email should be readable in ~3 minutes.
-6. **Validate** before sending: every item has a working-looking source URL, all times say IST,
-   no section exceeds its limits, HTML uses inline styles only (email clients strip `<style>`).
-   Never use white or light text: many email clients strip or invert background colours, so
-   all text must be dark and readable on a plain white background (keep the template's hero style).
+6. **Validate** before sending: every item has a source link, all times say IST, days-left
+   numbers match the dates, no section exceeds its limits, and the HTML uses inline styles
+   only (email clients strip `<style>`). Never use white or light text: many email clients
+   strip or invert background colours, so all text must be readable on plain white.
 7. **Send** the email (see Delivery).
 8. **Archive.** Save a short markdown record to `archive/YYYY-MM-DD.md` (headlines + links,
    not the full HTML), commit it with message `newsletter: issue YYYY-MM-DD`, and push to the

@@ -1,84 +1,84 @@
 <!--
-  Daily Sports Brief — email template.
-  Email-safe: table layout + inline styles only (Gmail strips <style> blocks in many cases).
-  Replace {{PLACEHOLDERS}}. Repeat / delete component blocks as needed.
-  Sport accent colours: F1 #e10600 · UFC #d4a017 · Tennis #2e8b57 · Cricket #1f5fbf
+  Daily Sports Brief — email template (Bloomberg India Edition-inspired).
+  Email-safe: table layout + inline styles only. Single 580px column, Helvetica Neue,
+  black text on white, plain blue underlined links. No emoji, no coloured cards.
+  All text must stay readable if a client strips background colours.
+  Replace {{PLACEHOLDERS}}; repeat / delete blocks as needed.
 -->
 <!doctype html>
 <html>
-<body style="margin:0;padding:0;background:#f2f3f5;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f3f5;">
-<tr><td align="center" style="padding:24px 12px;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#ffffff;border-radius:12px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#1c1e21;">
+<body style="margin:0;padding:0;background-color:#ffffff;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+<tr><td align="center" style="padding:24px 16px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:580px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.45;color:#000000;-webkit-font-smoothing:antialiased;">
 
-  <!-- HEADER -->
-  <tr><td style="padding:24px 28px 8px;">
-    <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#6b7280;">Daily Sports Brief</div>
-    <div style="font-size:22px;font-weight:700;margin-top:4px;">{{DATE_LONG}}</div>
-    <div style="font-size:13px;color:#6b7280;margin-top:4px;">F1 · UFC · Tennis · Cricket — last 7 days + what's next. All times IST.</div>
+  <!-- MASTHEAD -->
+  <tr><td style="padding:0 0 18px;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">Daily Sports Brief</div>
+    <div style="font-size:13px;color:#767676;margin-top:2px;">{{DAY_DATE_LONG}}</div>
   </td></tr>
 
-  <!-- HERO (exactly one). Light tint + dark text: must stay readable if a client strips background colours. -->
-  <tr><td style="padding:16px 28px;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#fff7ed" style="background-color:#fff7ed;border-left:5px solid {{ACCENT}};border-radius:10px;">
-      <tr><td bgcolor="#fff7ed" style="padding:22px 24px;color:#111827;background-color:#fff7ed;">
-        <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:{{ACCENT}};font-weight:700;">{{SPORT}} · Top story</div>
-        <div style="font-size:21px;font-weight:700;line-height:1.3;margin-top:8px;color:#111827;">{{HERO_HEADLINE}}</div>
-        <div style="font-size:14px;line-height:1.5;color:#374151;margin-top:8px;">{{HERO_SUMMARY}}</div>
-        <ul style="font-size:14px;line-height:1.55;color:#1f2937;margin:12px 0 0;padding-left:18px;">
-          <li>{{HIGHLIGHT}}</li>
-        </ul>
-        <a href="{{URL}}" style="display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:{{ACCENT}};text-decoration:underline;">Read the full report →</a>
+  <!-- INTRO: fixed italic line + one-sentence "Today:" teaser naming the 2–3 biggest items -->
+  <tr><td style="padding:0 0 20px;">
+    <p style="margin:0 0 16px;font-style:italic;">Good morning. This is your daily sports brief: F1, UFC, Grand Slam tennis and India cricket from the last seven days, and what's coming up. All times are IST.</p>
+    <p style="margin:0;">Today: {{TEASER}}</p>
+  </td></tr>
+
+  <!-- SECTION (use for the top story first, then Formula 1, UFC, Tennis, Cricket) -->
+  <tr><td style="border-top:1px solid #000000;padding:20px 0 0;">
+    <h2 style="margin:0 0 14px;font-size:24px;line-height:1.25;font-weight:700;">{{SECTION_TITLE}}</h2>
+
+    <!-- optional bold subhead (e.g. a result) -->
+    <p style="margin:0 0 8px;font-weight:700;">{{SUBHEAD}}</p>
+
+    <!-- paragraph: the link sits inside the sentence -->
+    <p style="margin:0 0 16px;">{{TEXT_BEFORE}} <a href="{{URL}}" style="color:#0000ee;text-decoration:underline;">{{LINKED_PHRASE}}</a> {{TEXT_AFTER}}</p>
+
+    <!-- optional bullet list (top story "Key moments": 2–3 items) -->
+    <p style="margin:0 0 8px;font-weight:700;">Key moments</p>
+    <ul style="margin:0 0 16px;padding-left:20px;">
+      <li style="margin-bottom:6px;"><b>{{LEAD}}</b> {{DETAIL}}</li>
+    </ul>
+
+    <!-- quiet-sport line -->
+    <p style="margin:0 0 16px;color:#666666;">Quiet week, nothing major.</p>
+  </td></tr>
+
+  <!-- COMING UP: every upcoming event from all sports, sorted by date -->
+  <tr><td style="border-top:1px solid #000000;padding:20px 0 0;">
+    <h2 style="margin:0 0 6px;font-size:24px;line-height:1.25;font-weight:700;">Coming Up</h2>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+
+      <!-- EVENT ROW (repeat). DAYS_LEFT = calendar days from the issue date (IST) to the event
+           date (IST): 0 → "Today", 1 → "Tomorrow", n → "n days". -->
+      <tr><td style="padding:14px 0;border-bottom:1px solid #dddddd;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
+          <td valign="top">
+            <div style="font-weight:700;"><a href="{{URL}}" style="color:#000000;text-decoration:none;">{{EVENT_NAME}}</a></div>
+            <div style="font-size:14px;color:#666666;margin-top:3px;">{{DAY_DATE}} · {{TIME}} IST · {{VENUE}}</div>
+            <!-- optional: key fights / matchups -->
+            <div style="font-size:14px;margin-top:6px;">{{KEY_MATCHUPS}}</div>
+          </td>
+          <td valign="top" align="right" width="92" style="padding-left:12px;white-space:nowrap;">
+            <div style="font-size:22px;font-weight:700;line-height:1.1;">{{DAYS_NUMBER_OR_WORD}}</div>
+            <div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#666666;">{{DAYS_LABEL}}</div>
+          </td>
+        </tr></table>
       </td></tr>
+      <!-- Days-left cell: n ≥ 2 → big "n" + label "days left"; 1 → big "1" + label "day left";
+           0 → big "Today" + label "live". -->
+
     </table>
   </td></tr>
 
-  <!-- SECTION HEADER (one per sport) -->
-  <tr><td style="padding:20px 28px 6px;">
-    <div style="font-size:16px;font-weight:700;border-left:4px solid {{ACCENT}};padding-left:10px;">{{SPORT}}</div>
-  </td></tr>
-
-  <!-- RESULT CARD -->
-  <tr><td style="padding:6px 28px;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border:1px solid #e5e7eb;border-radius:10px;">
-      <tr><td style="padding:14px 16px;">
-        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#6b7280;">Result · {{EVENT_DATE}}</div>
-        <div style="font-size:15px;font-weight:700;margin-top:4px;">{{EVENT_NAME}}</div>
-        <div style="font-size:14px;margin-top:6px;">{{RESULT_LINE}}</div>
-        <ul style="font-size:13px;line-height:1.5;color:#374151;margin:8px 0 0;padding-left:18px;">
-          <li>{{DETAIL}}</li>
-        </ul>
-        <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Source →</a>
+  <!-- FOOTER BOX -->
+  <tr><td style="padding:28px 0 0;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" bgcolor="#f5f5f5" style="background-color:#f5f5f5;border-radius:10px;">
+      <tr><td style="padding:16px 18px;font-size:13px;line-height:1.5;color:#444444;">
+        <b style="color:#000000;">About this brief</b><br>
+        Compiled from public reports every morning at 9:00 AM IST. Times are converted to IST, so check official sources for late changes.
       </td></tr>
     </table>
-  </td></tr>
-
-  <!-- NEWS ITEM (max 3 per sport) -->
-  <tr><td style="padding:6px 28px;">
-    <div style="font-size:14px;line-height:1.5;"><b>{{NEWS_TITLE}}</b> — {{NEWS_ONE_LINER}} <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Source</a></div>
-  </td></tr>
-
-  <!-- UPCOMING EVENT CARD -->
-  <tr><td style="padding:6px 28px;">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f8fafc;border:1px dashed {{ACCENT}};border-radius:10px;">
-      <tr><td style="padding:14px 16px;">
-        <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:{{ACCENT}};font-weight:700;">Up next</div>
-        <div style="font-size:15px;font-weight:700;margin-top:4px;">{{UPCOMING_NAME}}</div>
-        <div style="font-size:13px;color:#374151;margin-top:4px;">🗓 {{DATE_IST}} &nbsp;·&nbsp; ⏰ {{TIME_IST}} IST &nbsp;·&nbsp; 📍 {{VENUE}}</div>
-        <div style="font-size:13px;line-height:1.5;margin-top:8px;">{{KEY_MATCHUPS}}</div>
-        <a href="{{URL}}" style="font-size:12px;color:#1f5fbf;">Details →</a>
-      </td></tr>
-    </table>
-  </td></tr>
-
-  <!-- QUIET LINE (when a sport has nothing) -->
-  <tr><td style="padding:6px 28px;">
-    <div style="font-size:13px;color:#9ca3af;">Quiet week — nothing major.</div>
-  </td></tr>
-
-  <!-- FOOTER -->
-  <tr><td style="padding:24px 28px;font-size:11px;color:#9ca3af;border-top:1px solid #eef0f2;">
-    Compiled automatically from public reports. Times converted to IST; check official sources for late changes.
   </td></tr>
 
 </table>
