@@ -42,6 +42,8 @@ layout lives in `template.html`. Past issues live in `archive/`.
    - Keep it tight: the whole email should be readable in ~3 minutes.
 6. **Validate** before sending: every item has a working-looking source URL, all times say IST,
    no section exceeds its limits, HTML uses inline styles only (email clients strip `<style>`).
+   Never use white or light text: many email clients strip or invert background colours, so
+   all text must be dark and readable on a plain white background (keep the template's hero style).
 7. **Send** the email (see Delivery).
 8. **Archive.** Save a short markdown record to `archive/YYYY-MM-DD.md` (headlines + links,
    not the full HTML), commit it with message `newsletter: issue YYYY-MM-DD`, and push to the
